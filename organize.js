@@ -82,6 +82,15 @@ try {
 
 console.log(`Organizing ${files.length} file${files.length === 1 ? '' : 's'}...`);
 
+function fileExists(path) {
+	try {
+		fs.statSync(path);
+		return true;
+	} catch {
+		return false;
+	}
+}
+
 for (let i = 0; i < files.length; i++) {
 	let fileName = files[i];
 	const whimsicalPath = list[i];
@@ -100,14 +109,21 @@ for (let i = 0; i < files.length; i++) {
 	}
 	// Create the ancestor directories.
 	const ancestorsFsPath = path.join(dirPath, ancestorsPath);
-	try {
-		fs.statSync(ancestorsFsPath);
-	} catch {
+	if (
+		!fileExists(ancestorsFsPath)
+	) {
 		fs.mkdirSync(ancestorsFsPath, { recursive: true });
 	}
 	// Move the file.
+	let destPath = path.join(dirPath, ancestorsPath, fileName);
+	let version = 1;
+	while (
+		fileExists(destPath)
+	) {
+		destPath = destPath.replace(/(\s\(\d+\))?\.pdf$/, ` (${version++}).pdf`);
+	}
 	fs.renameSync(
 		path.join(dirPath, files[i]),
-		path.join(dirPath, ancestorsPath, fileName)
+		destPath
 	);
 }
