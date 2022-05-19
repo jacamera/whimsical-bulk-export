@@ -41,7 +41,7 @@ try {
 			}
 		)
 		.sort(
-			(a, b) => a.birthtimeMs - b.birthtimeMs
+			(a, b) => a.mtimeMs - b.mtimeMs
 		)
 		.map(
 			stat => stat.name
