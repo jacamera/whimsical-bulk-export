@@ -25,7 +25,7 @@ Scripts, and even browser automation tools like Selenium, cannot interact intera
 
    Windows:
 
-        ./chrome.exe --kiosk-printing
+        C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --kiosk-printing
         
    macOS:
 
