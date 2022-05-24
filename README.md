@@ -23,7 +23,15 @@ Scripts, and even browser automation tools like Selenium, cannot interact intera
 1. Launch Chrome normally and print a single document using the settings that you want to use for the bulk export. Chrome will remember the printer and orientation that you choose.
 2. Relaunch Chrome using the `--kiosk-printing` flag.
 
+   Windows:
+
         ./chrome.exe --kiosk-printing
+        
+   macOS:
+
+        /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --kiosk-printing
+
+   The path to your Chrome executable may vary.
 
 ### Run the Export Script
 
